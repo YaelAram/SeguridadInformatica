@@ -1,6 +1,9 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<string.h>
+
 #define CODES 250
-#define LENGTH 15
+#define LENGTH 20
+#define CAPS_ACTIVE 1
 
 char codes[CODES][LENGTH];
 
@@ -47,7 +50,7 @@ codes[39] = ";";
 codes[40] = "'";
 codes[41] = "`";
 codes[42] = " LEFT_SHIFT ";
-codes[43] = "\";
+codes[43] = "\\";
 codes[44] = "Z";
 codes[45] = "X";
 codes[46] = "C";
@@ -135,9 +138,131 @@ codes[127] = " COMPOSE ";
 codes[128] = " STOP ";
 codes[129] = " AGAIN ";
 codes[130] = " PROPS ";
+codes[131] = " UNDO ";
+codes[132] = " FRONT ";
+codes[133] = " COPY ";
+codes[134] = " OPEN ";
+codes[135] = " PASTE ";
+codes[136] = " FIND ";
+codes[137] = " CUT ";
+codes[138] = " HELP ";
+codes[139] = " MENU ";
+codes[140] = " CALC ";
+codes[141] = " SETUP ";
+codes[142] = " SLEEP ";
+codes[143] = " WAKE_UP ";
+codes[144] = " FILE ";
+codes[145] = " SEND_FILE ";
+codes[146] = " DELETE_FILE ";
+codes[147] = " XFER ";
+codes[148] = " PROG_1 ";
+codes[149] = " PROG_2 ";
+codes[150] = " WWW ";
+codes[151] = " MSDOS ";
+codes[152] = " COFFE ";
+codes[153] = " ROTATE_DISPLAY ";
+codes[154] = " CYCLE_WINDOW ";
+codes[155] = " MAIL ";
+codes[156] = " BOOKMARKS ";
+codes[157] = " COMPUTER ";
+codes[158] = " BACK ";
+codes[159] = " FORWARD ";
+codes[160] = " CLOSE_CD ";
+codes[161] = " EJECT_CD ";
+codes[162] = " F4EJECT_CLOSE_CD ";
+codes[163] = " NEXT_SONG ";
+codes[164] = " PLAY/PAUSE ";
+codes[165] = " PREV_SONG ";
+codes[166] = " STOP_CD ";
+codes[167] = " RECORD ";
+codes[168] = " REWIND ";
+codes[169] = " PHONE ";
+codes[170] = " ISO ";
+codes[171] = " CONFIG ";
+codes[172] = " HOME_PAGE ";
+codes[173] = " REFRESH ";
+codes[174] = " EXIT ";
+codes[175] = " MOVE ";
+codes[176] = " EDIT ";
+codes[177] = " SCROLL_UP ";
+codes[178] = " SCROLL_DOWN ";
+codes[179] = "(";
+codes[180] = ")";
+codes[181] = " NEW ";
+codes[182] = " REDO ";
+codes[183] = " F13 ";
+codes[184] = " F14 ";
+codes[185] = " F15 ";
+codes[186] = " F16";
+codes[187] = " F17 ";
+codes[188] = " F18 ";
+codes[189] = " F19 ";
+codes[190] = " F20 ";
+codes[191] = " F21 ";
+codes[192] = " F22 ";
+codes[193] = " F23 ";
+codes[194] = " F24 ";
+codes[195] = "";
+codes[196] = "";
+codes[197] = "";
+codes[198] = "";
+codes[199] = "";
+codes[200] = " PLAY_CD ";
+codes[201] = " PAUSE_CD ";
+codes[202] = " PROG_3 ";
+codes[203] = " PROG_4 ";
+codes[204] = " ALL_APPS ";
+codes[205] = " SUSPEND ";
+codes[206] = " CLOSE ";
+codes[207] = " PLAY ";
+codes[208] = " FAST_FORWARD ";
+codes[209] = " BASS_BOOST ";
+codes[210] = " PRINT ";
+codes[211] = " HP ";
+codes[212] = " CAMERA ";
+codes[213] = " SOUND ";
+codes[214] = "?";
+codes[215] = " EMAIL ";
+codes[216] = " CHAT ";
+codes[217] = " SEARCH ";
+codes[218] = " CONNECT ";
+codes[219] = " FINANCE ";
+codes[220] = " SPORT ";
+codes[221] = " SHOP ";
+codes[222] = " ALT_ERASE ";
+codes[223] = " CANCEL ";
+codes[224] = " BRIGHTNESS_DOWN ";
+codes[225] = " BRIGHTNESS_UP";
+codes[226] = " MEDIA ";
+codes[227] = " SWITCH_VIDEO_MODE ";
+codes[228] = "";
+codes[229] = "";
+codes[230] = "";
+codes[231] = " SEND ";
+codes[232] = " REPLY ";
+codes[233] = " FORWARD_MAIL ";
+codes[234] = " SAVE ";
+codes[235] = " DOCUMENTS ";
+codes[236] = " BATTERY ";
+codes[237] = " BLUETOOTH ";
+codes[238] = " WLAN ";
+codes[239] = " UWB ";
+codes[240] = " UNKNOWN ";
+codes[241] = " NEXT_VIDEO ";
+codes[242] = " PREV_VIDEO ";
+codes[243] = " BRIGHTNESS_CYCLE ";
+codes[244] = " BRIGHTNESS_AUTO ";
+codes[245] = " DISPLAY_OFF ";
+codes[246] = " WWAN ";
+codes[247] = " RADIO_KILL ";
+codes[248] = " MIC_MUTE ";
 
+char* getCode(int alias, int caps_active) {
+	if (alias > CODES) return "Code_Not_Found";
+	if (
+		caps_active != CAPS_ACTIVE && 
+		((alias >= 16 && alias <= 25) || (alias >= 30 && alias <= 38) || (alias >= 44 && alias <= 50))
+	) return strlwr(codes[alias]);
 
-char* getCode(int alias) {
-	if (alias > CODES) return "NotFound";
 	return codes[alias];
 }
